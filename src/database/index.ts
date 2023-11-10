@@ -1,4 +1,4 @@
-/* import { createConnection, getConnectionOptions } from 'typeorm';
+import { createConnection, getConnectionOptions } from 'typeorm';
 
 interface IOptions {
   host: string;
@@ -10,12 +10,12 @@ getConnectionOptions().then(options => {
   createConnection({
     ...options
   });
-}); */
+});
 
 
 //createConnection();
 
-import { AppDataSource } from "./data-source"
+/* import { AppDataSource } from "./data-source"
 
 AppDataSource.setOptions({ host: "database_ignite" }).initialize()
   .then(() => {
@@ -24,3 +24,4 @@ AppDataSource.setOptions({ host: "database_ignite" }).initialize()
   .catch((err) => {
     console.log("Error during Data Source initialization", err)
   })
+ */

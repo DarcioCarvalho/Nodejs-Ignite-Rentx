@@ -6,24 +6,12 @@ import {
 } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
-  //private categories: Category[];
 
   private repository: Repository<Category>;
 
-  //private static INSTANCE: CategoriesRepository;
-
-  /* private */ constructor() {
-    //this.categories = [];
-
+  constructor() {
     this.repository = getRepository(Category);
   }
-
-  /* public static getInstance(): CategoriesRepository {
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
-    }
-    return CategoriesRepository.INSTANCE;
-  } */
 
   async create({ name, description }: ICreateCategoryDTO): Promise<Category> {
 
@@ -34,15 +22,6 @@ class CategoriesRepository implements ICategoriesRepository {
 
     await this.repository.save(category);
 
-    /* const category = new Category();
-    Object.assign(category, {
-      name,
-      description,
-      created_at: new Date(),
-    });
-
-    this.categories.push(category); */
-
     return category;
   }
 
@@ -50,14 +29,9 @@ class CategoriesRepository implements ICategoriesRepository {
 
     const categories = await this.repository.find();
     return categories
-    //return this.categories;
   }
 
   async findByName(name: string): Promise<Category> {
-    /* const categoryFound = this.categories.find(
-      category => category.name === name,
-    ); 
-    return categoryFound; */
     const categoryFound = await this.repository.findOne({ name });
     return categoryFound;
   }
