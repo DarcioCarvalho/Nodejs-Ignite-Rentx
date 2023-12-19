@@ -1,12 +1,16 @@
+import { inject, injectable } from "tsyringe";
 import { Specification } from "../../entities/Specification";
 import { ISpecificationsRepository } from "../../repositories/ISpecificationsRepository";
 
+@injectable()
 class ListSpecificationsUseCase {
   // eslint-disable-next-line prettier/prettier
-  constructor(private specificationsRepository: ISpecificationsRepository) { }
+  constructor(
+    @inject("SpecificationsRepository")
+    private specificationsRepository: ISpecificationsRepository) { }
 
-  execute(): Specification[] {
-    const specificationsList = this.specificationsRepository.list();
+  async execute(): Promise<Specification[]> {
+    const specificationsList = await this.specificationsRepository.list();
     return specificationsList;
   }
 }
