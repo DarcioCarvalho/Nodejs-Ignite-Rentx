@@ -1,4 +1,3 @@
-import { Repository, getRepository } from "typeorm";
 import { Category } from "../../entities/Category";
 import {
   ICategoriesRepository,
@@ -6,60 +5,45 @@ import {
 } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
-  //private categories: Category[];
+  private categories: Category[];
 
-  private repository: Repository<Category>;
+  private static INSTANCE: CategoriesRepository;
 
-  //private static INSTANCE: CategoriesRepository;
-
-  /* private */ constructor() {
-    //this.categories = [];
-
-    this.repository = getRepository(Category);
+  private constructor() {
+    this.categories = [];
   }
 
-  /* public static getInstance(): CategoriesRepository {
+  public static getInstance(): CategoriesRepository {
     if (!CategoriesRepository.INSTANCE) {
       CategoriesRepository.INSTANCE = new CategoriesRepository();
     }
     return CategoriesRepository.INSTANCE;
-  } */
+  }
 
-  async create({ name, description }: ICreateCategoryDTO): Promise<Category> {
+  create({ name, description }: ICreateCategoryDTO): Category {
 
-    const category = this.repository.create({
-      description,
-      name
-    })
-
-    await this.repository.save(category);
-
-    /* const category = new Category();
+    const category = new Category();
     Object.assign(category, {
       name,
       description,
       created_at: new Date(),
     });
 
-    this.categories.push(category); */
+    this.categories.push(category);
 
     return category;
   }
 
-  async list(): Promise<Category[]> {
-
-    const categories = await this.repository.find();
-    return categories
-    //return this.categories;
+  list(): Category[] {
+    return this.categories;
   }
 
-  async findByName(name: string): Promise<Category> {
-    /* const categoryFound = this.categories.find(
+  findByName(name: string): Category {
+    const categoryFound = this.categories.find(
       category => category.name === name,
-    ); 
-    return categoryFound; */
-    const categoryFound = await this.repository.findOne({ name });
+    );
     return categoryFound;
+
   }
 }
 
