@@ -1,11 +1,11 @@
-import { Category } from "../entities/Category";
+import { Category } from "../infra/typeorm/entities/Category";
 import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
 
 class ListCategoryService {
   // eslint-disable-next-line prettier/prettier
   constructor(private categoriesRepository: ICategoriesRepository) { }
 
-  execute(): Category[] {
+  async execute(): Promise<Category[]> {
     return this.categoriesRepository.list();
   }
 }
