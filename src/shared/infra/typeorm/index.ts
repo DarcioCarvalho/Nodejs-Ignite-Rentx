@@ -1,8 +1,21 @@
-import { createConnection, getConnectionOptions } from 'typeorm';
+import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 
 interface IOptions {
   host: string;
 }
+
+export default async (host = "database_ignite"): Promise<Connection> => {
+
+  return getConnectionOptions().then(options => {
+    const newOptions = options as IOptions;
+    newOptions.host = host;
+    return createConnection({
+      ...options
+    });
+  });
+}
+
+/*
 
 getConnectionOptions().then(options => {
   const newOptions = options as IOptions;
@@ -10,7 +23,7 @@ getConnectionOptions().then(options => {
   createConnection({
     ...options
   });
-});
+}); */
 
 
 //createConnection();
