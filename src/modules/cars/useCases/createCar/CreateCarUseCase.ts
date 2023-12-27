@@ -21,7 +21,9 @@ class CreateCarUseCase {
     license_plate,
     fine_amount,
     brand,
-    category_id
+    category_id,
+    specifications,
+    id
   }: ICreateCarDTO): Promise<Car> {
 
     const carAlreadyExists = await this.carsRepository.findByLicensePlate(license_plate);
@@ -37,7 +39,9 @@ class CreateCarUseCase {
       license_plate,
       fine_amount,
       brand,
-      category_id
+      category_id,
+      specifications,
+      id
     });
   }
 }
