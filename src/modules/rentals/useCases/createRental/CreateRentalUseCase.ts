@@ -55,8 +55,6 @@ class CreateRentalUseCase {
       expected_return_date
     });
 
-    console.log("Rental: ", rental);
-
     return rental;
 
   }

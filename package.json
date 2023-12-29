@@ -7,7 +7,7 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm migration:create": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d src/shared/infra/typeorm/migrations",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "seed:admin": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "swagger-ui-express": "^5.0.0",
     "tsyringe": "^4.8.0",
     "typeorm": "^0.2.45",
+    "supertest": "^6.3.3",    
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -33,6 +34,7 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/multer": "^1.4.5",
     "@types/node": "^18.0.3",
+    "@types/supertest": "^6.0.2",
     "@types/uuid": "^9.0.6",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
